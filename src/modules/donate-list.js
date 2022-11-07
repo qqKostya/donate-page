@@ -1,3 +1,6 @@
+import { Settings } from '../core/constants/settings';
+import * as Utils from '../core/utils';
+
 export class DonateList {
   #donates
   #donateItemsHTML
@@ -15,8 +18,8 @@ export class DonateList {
     this.#donates.forEach((donateItem) => {
       const donateItemHTML = document.createElement('div');
       donateItemHTML.className = 'donate-item';
-      const creationTime = donateItem.date;
-      donateItemHTML.innerHTML = `${creationTime} - <b>${donateItem.amount}$</b>`;
+      const creationTime = Utils.getFormattedTime(donateItem.date);
+      donateItemHTML.innerHTML = `${creationTime} - <b>${donateItem.amount}${Settings.currency}</b>`;
       container.append(donateItemHTML);
     });
   }
